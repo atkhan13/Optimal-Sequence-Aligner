@@ -1,12 +1,17 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
+
 public class MultiGapFree {
 	public static void main(String [] args)
 	{
-		File file = new File("short");
+		//Specify file with both sequences which require alignment. FASTA sequence format must be used. 
+		File file = new File("test");
+		//Match, mismatch, and penalty scores can be adjusted to your discretion
 		ArrayList<String> strings = optimalAlignment(file, 1, -1, -1);
+		//Determine score of alignment
 		int optimalScore = optimalScore(strings.get(0), strings.get(1), 1, -1, -1);
+		//Formatting of results
 		System.out.println(strings.get(0));
 		for(int i = 0; i < strings.get(0).length(); i ++)
 		{
@@ -40,6 +45,7 @@ public class MultiGapFree {
 		int n = s.length();
 		int m = t.length();
 		Cell[][] myMatrix = new Cell[n+1][m+1];
+		//Initialization
 		Cell initialCell = new Cell(0, penalty, penalty, '-', '-');
 		myMatrix[0][0] = initialCell;
 		for(int j = 1; j <= m; j++)
@@ -72,6 +78,7 @@ public class MultiGapFree {
 				myMatrix[i][0] = add;
 			}
 		}
+		//Matrix filling
 		for(int i = 1; i < n + 1; i ++)
 		{
 			for(int j = 1; j < m + 1; j++)
@@ -107,6 +114,7 @@ public class MultiGapFree {
 				myMatrix[i][j] = toAdd;
 			}
 		}
+		//Traceback
 		int i = n;
 		int j = m;
 		String newS = "";
@@ -157,6 +165,7 @@ public class MultiGapFree {
 		return myAlignment;
 	}
 	
+	//Score alignment
 	public static int optimalScore(String s, String t, int match, int mismatch, int penalty)
 	{
 		int score = 0;
@@ -176,7 +185,4 @@ public class MultiGapFree {
 		}
 		return score;
 	}
-	
-	
-
 }

@@ -1,3 +1,6 @@
+//Class to represent each cell. Cells contain three values which we store using this Cell class.
+//Additionally we store which nucleotide is represented by each sequence in this cell as well as which direction
+// resulted in the maximum score which is then used for traceback.
 import java.util.ArrayList;
 public class Cell {
 	public int mValue;

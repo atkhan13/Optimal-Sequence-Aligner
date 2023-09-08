@@ -55,8 +55,26 @@ This would fill our example matrix in the following way:
 We fill each remaining cell in the following way:
 
 M(i, j) &larr; max = M(i-1, j-1) + s(s<sub>i</sub> t<sub>j</sub>) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I<sub>x</sub>(i-1, j-1) + s(s<sub>i</sub> t<sub>j</sub>) <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I<sub>y</sub>(i-1, j-1) + s(s<sub>i</sub> t<sub>j</sub>) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I<sub>x</sub>(i-1, j-1) + s(s<sub>i</sub> t<sub>j</sub>) <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I<sub>y</sub>(i-1, j-1) + s(s<sub>i</sub> t<sub>j</sub>) 
+
+I<sub>x</sub> &larr; M(i-1, j) + p <br>
+I<sub>y</sub> &larr; M(i, j-1) + p
+
+where s(s<sub>i</sub> t<sub>j</sub>) = mismatch score if s<sub>i</sub> &ne; t<sub>j</sub> or match score if s<sub>i</sub> = t<sub>j</sub> 
+
+This would fill our example matrix in the following way:
+
+| | - | A | P | P | L | E |
+| ---| ---| --- | --- | --- | ---| --- |
+| **_** | M = 0 <br> I<sub>x</sub> = -1 <br> I<sub>y</sub> = -1 | M = -&infin; <br> I<sub>x</sub> = -&infin; <br> I<sub>y</sub> = -1  | M = -&infin; <br> I<sub>x</sub> = -&infin; <br> I<sub>y</sub> = -&infin; | M = -&infin; <br> I<sub>x</sub> = -&infin; <br> I<sub>y</sub> = -&infin; | M = -&infin; <br> I<sub>x</sub> = -&infin; <br> I<sub>y</sub> = -&infin;| M = -&infin; <br> I<sub>x</sub> = -&infin; <br> I<sub>y</sub> = -&infin;
+| **H** | M = -&infin; <br> I<sub>x</sub> = -1; <br> I<sub>y</sub> = -&infin; | | | | |
+| **A** | M = -&infin; <br> I<sub>x</sub> = -&infin; <br> I<sub>y</sub> = -&infin; | | | | |
+| **P** | M = -&infin; <br> I<sub>x</sub> = -&infin; <br> I<sub>y</sub> = -&infin; | | | | |
+| **E** | M = -&infin; <br> I<sub>x</sub> = -&infin; <br> I<sub>y</sub> = -&infin; | | | | |
+
+
+
 
 
 
